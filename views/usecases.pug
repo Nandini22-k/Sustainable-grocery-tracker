@@ -1,0 +1,55 @@
+extends layout
+
+block content
+  h1.text-center.mt-4 User Stories & Use Case Overview
+
+  p.text-center.text-muted.mb-4
+    | This page displays all user stories for buyers and administrators of the Sustainable Grocery Tracker.
+
+  // Buyer Section
+  h2.mt-5 Buyer Use Cases
+  .row
+    .col-md-6
+      .card.mb-4.shadow-sm
+        .card-body
+          h4.card-title Buyer Login
+          p.card-text As a Buyer, I want to log in to my account so that I can access my grocery tracker.
+          p.badge.bg-success Acceptance: Login succeeds with valid credentials; fails with invalid ones.
+    .col-md-6
+      .card.mb-4.shadow-sm
+        .card-body
+          h4.card-title Add Grocery Item
+          p.card-text As a Buyer, I want to select a grocery item so that I can keep track of my groceries.
+          p.badge.bg-success Acceptance: Item appears in grocery list after adding.
+
+    .col-md-6
+      .card.mb-4.shadow-sm
+        .card-body
+          h4.card-title Delete Grocery Item
+          p.card-text As a Buyer, I want to delete a grocery item so I can remove unnecessary items.
+          p.badge.bg-success Acceptance: Selected item is removed successfully.
+
+  // Admin Section
+  h2.mt-5 Admin Use Cases
+  .row
+    .col-md-6
+      .card.mb-4.shadow-sm
+        .card-body
+          h4.card-title Admin Login
+          p.card-text As an Admin, I want to log in so I can manage users and grocery data.
+          p.badge.bg-success Acceptance: Login succeeds only with admin credentials.
+
+    .col-md-6
+      .card.mb-4.shadow-sm
+        .card-body
+          h4.card-title Add Grocery Item (Admin)
+          p.card-text As an Admin, I want to add grocery items to the master list.
+          p.badge.bg-success Acceptance: New grocery items appear in item list.
+
+    .col-md-6
+      .card.mb-4.shadow-sm
+        .card-body
+          h4.card-title Delete Grocery Item (Admin)
+          p.card-text As an Admin, I want to delete grocery items from the master list.
+          p.badge.bg-success Acceptance: Grocery item is removed from master list.
+

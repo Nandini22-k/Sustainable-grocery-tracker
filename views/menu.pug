@@ -1,0 +1,92 @@
+extends layout
+
+block content
+  h2 Grocery Menu
+  p.text-muted Browse items and manage your groceries.
+
+  // Top Buttons
+  .d-flex.justify-content-end.mb-3
+    a.btn.btn-primary.me-2(href="/add-item") Add New Grocery Item
+    a.btn.btn-warning.me-2(href="/tracker") View Tracker
+    a.btn.btn-success(href="/cart") View Cart Items
+
+  // Grocery Items
+  .row.mt-4
+
+    // 1. Organic Apples
+    .col-md-4
+      .card.mb-4.shadow-sm
+        .card-body
+          h4 Organic Apples
+          p Category: Fruits
+          p Eco Score: 90
+          p Carbon Footprint: 0.40 kg CO₂
+          .d-flex.gap-2
+            button.btn.btn-success.btn-sm Add to Cart
+            button.btn.btn-info.btn-sm Track
+            button.btn.btn-danger.btn-sm Delete
+
+    // 2. Bananas
+    .col-md-4
+      .card.mb-4.shadow-sm
+        .card-body
+          h4 Bananas
+          p Category: Fruits
+          p Eco Score: 85
+          p Carbon Footprint: 0.30 kg CO₂
+          .d-flex.gap-2
+            button.btn.btn-success.btn-sm Add to Cart
+            button.btn.btn-info.btn-sm Track
+            button.btn.btn-danger.btn-sm Delete
+
+    // 3. Broccoli
+    .col-md-4
+      .card.mb-4.shadow-sm
+        .card-body
+          h4 Broccoli
+          p Category: Vegetables
+          p Eco Score: 88
+          p Packaging: None
+          .d-flex.gap-2
+            button.btn.btn-success.btn-sm Add to Cart
+            button.btn.btn-info.btn-sm Track
+            button.btn.btn-danger.btn-sm Delete
+
+    // 4. Almond Milk
+    .col-md-4
+      .card.mb-4.shadow-sm
+        .card-body
+          h4 Almond Milk
+          p Category: Dairy Alternative
+          p Eco Score: 79
+          p Packaging: Recyclable Carton
+          .d-flex.gap-2
+            button.btn.btn-success.btn-sm Add to Cart
+            button.btn.btn-info.btn-sm Track
+            button.btn.btn-danger.btn-sm Delete
+
+    // 5. Brown Rice
+    .col-md-4
+      .card.mb-4.shadow-sm
+        .card-body
+          h4 Brown Rice
+          p Category: Grains
+          p Eco Score: 85
+          p Packaging: Paper Bag
+          .d-flex.gap-2
+            button.btn.btn-success.btn-sm Add to Cart
+            button.btn.btn-info.btn-sm Track
+            button.btn.btn-danger.btn-sm Delete
+
+    // 6. Eggs (Free Range)
+    .col-md-4
+      .card.mb-4.shadow-sm
+        .card-body
+          h4 Eggs (Free Range)
+          p Category: Protein
+          p Eco Score: 81
+          p Packaging: Paper Carton
+          .d-flex.gap-2
+            button.btn.btn-success.btn-sm Add to Cart
+            button.btn.btn-info.btn-sm Track
+            button.btn.btn-danger.btn-sm Delete
