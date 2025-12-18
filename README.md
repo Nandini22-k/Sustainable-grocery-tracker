@@ -1,94 +1,241 @@
-Sustainable Grocery Tracker
+# 🥬 Sustainable Grocery Tracker – How to Run the Project
 
-A Node.js application designed to help users track grocery consumption, reduce food waste, and make more sustainable shopping decisions. This project uses a local MySQL/MariaDB database (via XAMPP) to store user and grocery data.
+## Introduction
 
-📌 Prerequisites
+The **Sustainable Grocery Tracker** is a web-based application that allows users to browse grocery items and view sustainability-related information such as carbon score, packaging type, and organic status.
+This project demonstrates **READ functionality**, database integration, and dynamic rendering using **Node.js, Express, MySQL, and Pug templates**.
+
+---
+
+## 🔧 Prerequisites
 
 Make sure the following are installed on your system:
 
-Node.js (v14+ recommended)
+* **Node.js** (v14 or later recommended)
+* **npm** (comes with Node.js)
+* **Git**
+* **XAMPP** (for MySQL / phpMyAdmin)
+* **VS Code**
 
-npm (bundled with Node.js)
+---
 
-XAMPP (includes Apache + MySQL/MariaDB)
+## 📥 Step 1: Clone the GitHub Repository
 
-The provided SQL dump file: sql_dump.sql
+### Check if Git is installed:
 
-🚀 Project Setup
-1. Navigate to the project root
+```bash
+git --version
+```
 
-Open your terminal where index.js is located:
+If not installed, download and install Git:
+👉 [https://git-scm.com/downloads](https://git-scm.com/downloads)
+(Choose Windows and keep default options)
 
-cd node_template
+### Clone the repository:
 
-2. Install dependencies
+```bash
+git clone https://github.com/<your-username>/sustainable-grocery-tracker.git
+```
+
+Navigate into the project folder:
+
+```bash
+cd sustainable-grocery-tracker
+```
+
+---
+
+## 📦 Step 2: Open the Project in VS Code
+
+```bash
+code .
+```
+
+Open the **VS Code Terminal**:
+
+* Menu → Terminal → New Terminal
+* OR press **Ctrl + `**
+
+---
+
+## 📦 Step 3: Install Project Dependencies
+
+Run this in the VS Code terminal:
+
+```bash
 npm install
+```
 
-⚙️ Environment Configuration
+(Optional but recommended for development)
 
-Create or edit a .env file.
+```bash
+npm install -g nodemon
+```
 
-If .env does not exist, rename env_sample.txt → .env.
+---
 
-Add your environment variables:
+## 🗄️ Step 4: Database Setup (MySQL + phpMyAdmin)
 
-DB_HOST=
-DB_PORT=
-DB_USER=
-DB_PASS=
-DB_NAME=
+### 1️⃣ Start XAMPP
 
+* Open **XAMPP Control Panel**
+* Start **Apache**
+* Start **MySQL**
 
-Adjust the values to match your MySQL/XAMPP configuration.
+---
 
-🗄️ Initialize MySQL using XAMPP
+### 2️⃣ Open phpMyAdmin
 
-Open XAMPP Control Panel
+Go to:
 
-Start Apache and MySQL
-
-Visit phpMyAdmin
+```
 http://localhost/phpmyadmin
+```
 
-Create a new database (if not already created)
+---
 
-Import the SQL dump:
+### 3️⃣ Create the Database
 
-Go to the SQL tab
+Run this SQL:
 
-Paste or upload the contents of sql_dump.sql
+```sql
+CREATE DATABASE sustainable_grocery;
+USE sustainable_grocery;
+```
 
-Execute the script
+---
 
-Your database is now initialized.
+### 4️⃣ Create Tables & Seed Data
 
-▶️ Run the Application
+Paste and run the following SQL (or import from `seed.sql` if included):
 
-Start the Node.js server:
+```sql
+CREATE TABLE categories (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    category_name VARCHAR(50)
+);
 
-node index.js
+CREATE TABLE products (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    category_id INT,
+    carbon_score VARCHAR(10),
+    packaging_type VARCHAR(50),
+    organic_flag VARCHAR(10),
+    expiry_date DATE,
+    price DECIMAL(6,2),
+    FOREIGN KEY (category_id) REFERENCES categories(id)
+);
 
+INSERT INTO categories (category_name) VALUES
+('Fruits'), ('Vegetables'), ('Dairy'), ('Grains');
 
-The app should now be running locally.
+INSERT INTO products 
+(name, category_id, carbon_score, packaging_type, organic_flag, expiry_date, price)
+VALUES
+('Organic Banana', 1, 'Low', 'Plastic-free', 'Yes', '2025-12-01', 1.50),
+('Oat Milk', 3, 'Medium', 'Carton', 'Yes', '2025-11-15', 2.80),
+('Chickpea Pasta', 4, 'Low', 'Paper', 'No', '2026-01-01', 3.20),
+('Seasonal Carrots', 2, 'Low', 'Plastic-free', 'Yes', '2025-11-30', 1.20);
+```
 
-💡 PowerShell Notes (Windows Users)
+---
 
-If PowerShell blocks script execution, allow local scripts by running:
+## ⚙️ Step 5: Configure Database Connection
 
-Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned -Force
+Open `db.js` and update credentials if needed:
 
-📚 About Sustainable Grocery Tracker
+```js
+host: 'localhost',
+user: 'root',
+password: '',
+database: 'sustainable_grocery'
+```
 
-The Sustainable Grocery Tracker helps users:
+(Adjust password if your MySQL setup requires one.)
 
-Track grocery purchases
+---
 
-Monitor expiration dates
+## ▶️ Step 6: Run the Application
 
-Reduce food waste
+### Development mode (recommended):
 
-Make sustainable shopping choices
+```bash
+nodemon app.js
+```
 
-Analyze consumption patterns
+OR
 
-This project aims to support environmentally conscious habits through simple, user-friendly tools.
+### Normal mode:
+
+```bash
+node app.js
+```
+
+---
+
+## 🌐 Step 7: Open in Browser
+
+* **Home Page:**
+
+  ```
+  http://localhost:3000
+  ```
+
+* **Products (Dynamic Data):**
+
+  ```
+  http://localhost:3000/products
+  ```
+
+* **Product Detail Page:**
+
+  ```
+  http://localhost:3000/products/1
+  ```
+
+---
+
+## 📁 Project Structure
+
+```
+sustainable-grocery-tracker/
+│  app.js
+│  db.js
+│  package.json
+│  README.md
+│
+├── controllers/
+│     homeController.js
+│     productController.js
+│
+├── routes/
+│     index.js
+│     products.js
+│
+├── views/
+│     layout.pug
+│     index.pug
+│     products.pug
+│     product-details.pug
+│     about.pug
+│
+├── public/
+│     styles.css
+│
+└── seeds/
+      seed.sql
+```
+
+---
+
+## ✅ Features Demonstrated (Sprint 3)
+
+* PUG templates generating HTML pages
+* Dynamic grocery data pulled from MySQL
+* Product list and detail views
+* MVC structure (routes, controllers, views)
+* GitHub version control
+* Task board tracking (Trello / GitHub Projects)
+
+---
