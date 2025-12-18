@@ -157,7 +157,7 @@ database: 'sustainable_grocery'
 ---
 
 ## ▶️ Step 6: Run the Application
-
+npm install bcrypt express-session mysql2
 ### Development mode (recommended):
 
 ```bash
