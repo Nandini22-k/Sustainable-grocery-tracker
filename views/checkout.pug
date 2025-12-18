@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  h2 Checkout
+
+  p Total Amount: $#{total.toFixed(2)}
+
+  form(action="/payment" method="GET")
+    button.btn.btn-primary(type="submit") Proceed to Payment

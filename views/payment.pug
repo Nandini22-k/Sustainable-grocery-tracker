@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h2 Payment
+
+  p Total Amount: $#{total.toFixed(2)}
+
+  form(action="/payment-status" method="POST")
+    .mb-3
+      label Payment Method
+      select.form-select(name="method")
+        option Credit Card
+        option UPI
+        option Net Banking
+        option Cash on Delivery
+
+    button.btn.btn-success.mt-3(type="submit") Pay Now

@@ -1,0 +1,27 @@
+extends layout
+
+block content
+  h2 Admin Panel
+
+  h4 Add New Item
+  form(action="/admin/add-item" method="POST")
+    .mb-3
+      label Item Name
+      input.form-control(type="text" name="name" required)
+    .mb-3
+      label Price
+      input.form-control(type="number" step="0.01" name="price" required)
+
+    button.btn.btn-primary(type="submit") Add Item
+
+  hr.mt-4
+
+  h4 Existing Grocery Items
+
+  ul.list-group
+    each item in items
+      li.list-group-item.d-flex.justify-content-between
+        span #{item.name} - $#{item.price}
+        form(action="/admin/delete-item" method="POST")
+          input(type="hidden" name="id" value=item.id)
+          button.btn.btn-danger.btn-sm(type="submit") Delete

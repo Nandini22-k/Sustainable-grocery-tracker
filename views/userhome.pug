@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  .p-4.text-center(style="background:#4CAF50;color:white;border-radius:12px;")
+    h2 Welcome #{user.name}!
+    p You are logged in.
+
+  .text-center.mt-4
+    a.btn.btn-success.btn-lg(href="/menu") Go to Menu

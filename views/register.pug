@@ -1,0 +1,23 @@
+extends layout
+
+block content
+  .container.mt-5(style="max-width:430px;")
+    .card.shadow.p-4
+      h3.text-center Register
+
+      form(action="/register" method="POST")
+        .mb-3
+          label Full Name
+          input.form-control(type="text" name="name" required)
+        .mb-3
+          label Email
+          input.form-control(type="email" name="email" required)
+        .mb-3
+          label Password
+          input.form-control(type="password" name="password" required)
+
+        button.btn.btn-primary.w-100(type="submit") Create Account
+
+      p.text-center.mt-3
+        | Already have an account?
+        a(href="/login") Login

@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  h2 Grocery Menu
+
+  .row.mt-4
+    each item in items
+      .col-md-4
+        .card.mb-4.shadow-sm
+          .card-body
+            h4= item.name
+            p Price: $#{item.price}
+
+            form(action="/add-to-cart" method="POST")
+              input(type="hidden" name="id" value=item.id)
+              button.btn.btn-success(type="submit") Add to Cart

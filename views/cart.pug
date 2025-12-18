@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h2 Your Cart
+
+  if cart.length === 0
+    p Cart is empty.
+    a.btn.btn-primary(href="/menu") Go to Menu
+
+  else
+    ul.list-group
+      each item, i in cart
+        li.list-group-item.d-flex.justify-content-between
+          span #{item.name} - $#{item.price}
+          form(action="/remove-from-cart" method="POST")
+            input(type="hidden" name="index" value=i)
+            button.btn.btn-danger.btn-sm(type="submit") Remove
+
+    h4.mt-3 Total: $#{total.toFixed(2)}
+
+    a.btn.btn-success.mt-3(href="/checkout") Proceed to Checkout

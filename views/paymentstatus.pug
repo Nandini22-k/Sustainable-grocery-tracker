@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  .text-center
+    if status == "success"
+      h2.text-success Payment Successful!
+      p Thank you for your purchase.
+      a.btn.btn-primary(href="/") Go Home
